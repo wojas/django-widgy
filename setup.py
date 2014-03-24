@@ -21,7 +21,7 @@ install_requires = [
     # 1.6.
     'django_polymorphic==0.5.1',
     'South',
-    'PyScss == 1.1.5',
+    'django-pyscss',
     'six',
     'markdown',
     'bleach',
@@ -56,12 +56,11 @@ setup(
     author_email='programmers@fusionbox.com',
     description=__doc__,
     long_description=read('README.rst') + '\n\n' + read('CHANGELOG.rst'),
-    url='https://django-widgy.readthedocs.org/',
+    url='http://docs.wid.gy/',
     license='BSD',
     packages=[package for package in find_packages() if package.startswith('widgy')],
     install_requires=install_requires,
     dependency_links=[
-        'http://github.com/fusionbox/pyScss/tarball/master#egg=pyscss-1.1.5',
         'http://github.com/chrisglass/django_polymorphic/tarball/master#egg=django_polymorphic-0.5.1',
     ],
     zip_safe=False,
