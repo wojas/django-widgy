@@ -138,6 +138,10 @@ $font-default: "Open Sans", Arial, Helvetica, sans-serif;
       display: none;
     }
   }
+  
+  p.title {
+    margin-bottom: 8px;
+  }
 
   .shelfItem {
     @include gradient(#eeeeee,#ffffff);
@@ -152,8 +156,9 @@ $font-default: "Open Sans", Arial, Helvetica, sans-serif;
     width: 215px !important;
 
     span.title {
-      background-position: 5px 3px;
+      background-position: 5px 5px;
       font-size: 11px;
+      line-height: 22px;
       max-width: 160px;
       padding: 4px 0px 2px 26px;
       text-transform: capitalize;
