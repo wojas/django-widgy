@@ -4,6 +4,8 @@ from operator import attrgetter
 
 import six
 
+from widgy.utils import classinstancemethod
+
 
 class DefaultChildrenMixin(object):
     """
@@ -63,7 +65,9 @@ class InvisibleMixin(object):
     Provides a preview template that accepts children, but is otherwise
     invisible.
     """
-    css_classes = ('invisible',)
+    @classinstancemethod
+    def get_css_classes(cls, self):
+        return super(InvisibleMixin, self or cls).get_css_classes() + ('invisible',)
 
     @classmethod
     def get_template_kwargs(cls, **kwargs):
@@ -77,8 +81,11 @@ class InvisibleMixin(object):
 
 
 class TabbedContainer(object):
-    css_classes = ('tabbed',)
     component_name = 'tabbed'
+
+    @classinstancemethod
+    def get_css_classes(cls, self):
+        return super(TabbedContainer, self or cls).get_css_classes() + ('tabbed',)
 
     @classmethod
     def get_template_kwargs(cls, **kwargs):

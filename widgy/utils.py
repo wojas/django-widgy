@@ -3,6 +3,7 @@ Some utility functions used throughout the project.
 """
 from itertools import ifilterfalse
 from contextlib import contextmanager
+from functools import partial
 
 import bs4
 
@@ -233,3 +234,17 @@ else:
         @classmethod
         def as_manager(cls):
             return Manager.from_queryset(cls)()
+
+
+class classinstancemethod(object):
+    """
+    Like classmethod, but will pass in an object or None as the
+    second argument.
+    """
+    def __init__(self, f):
+        self.f = f
+
+    def __get__(self, obj, cls=None):
+        if cls is None:
+            cls = type(obj)
+        return partial(self.f, cls, obj)
