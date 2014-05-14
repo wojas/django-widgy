@@ -3,6 +3,7 @@ Resource views that can be included to enable a REST style API
 for Widgy nodes and Content objects.
 """
 from functools import partial
+import six
 
 from django.http import Http404
 from django.core.exceptions import ValidationError, PermissionDenied
@@ -192,7 +193,7 @@ class ShelfView(WidgyView):
         we'll do it manually.
         """
         res = {}
-        for node, classes in obj.iteritems():
+        for node, classes in six.iteritems(obj):
             res[node.get_api_url(site)] = [i.class_to_json(site) for i in classes]
         return res
 

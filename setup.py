@@ -13,9 +13,10 @@ def read(fname):
 
 
 install_requires = [
+    'six',
     'mezzanine >= 1.3.0',
     'django-treebeard',
-    'django-filer==0.9.5',
+    'django-filer',
     # We don't actually require polymorphic -- filer does. we do need to
     # increase the minimum version though, to one that supports django
     # 1.6.
@@ -28,7 +29,7 @@ install_requires = [
     'django-compressor>=1.3',
     'django-extensions',
     'beautifulsoup4',
-    'sorl-thumbnail==11.12',
+    'sorl-thumbnail',
     'html2text==3.200.3',
     'phonenumbers>=5',
     'django-argonauts==1.0.0',
@@ -47,7 +48,7 @@ def get_version():
     elif stage == 'alpha':
         process = subprocess.Popen('git rev-parse HEAD'.split(), stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
-        return number + '-' + stdout.strip()[:8]
+        return number + '-' + stdout.decode('utf-8').strip()[:8]
 
 setup(
     name='django-widgy',
@@ -77,5 +78,6 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
     ],
 )

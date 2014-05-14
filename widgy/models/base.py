@@ -15,6 +15,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.template import RequestContext
 from django.contrib.admin import widgets
 from django.template.defaultfilters import capfirst
+import six
 
 from treebeard.mp_tree import MP_Node
 
@@ -174,7 +175,7 @@ class Node(MP_Node):
             contents[node.content_type_id].add(node.content_id)
 
         # Convert that mapping to content_types -> Content instances
-        for content_type_id, content_ids in contents.iteritems():
+        for content_type_id, content_ids in six.iteritems(contents):
             try:
                 ct = ContentType.objects.get_for_id(content_type_id)
                 model_class = ct.model_class()
@@ -480,7 +481,7 @@ class Content(models.Model):
 
     @property
     def display_name(self):
-        return unicode(self._meta.verbose_name)
+        return six.u(self._meta.verbose_name)
 
     @property
     def class_name(self):
